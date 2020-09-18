@@ -17,3 +17,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Не захищена частина
+Route::get('test/{code}', 'Api\TestController@getTestByCode'); //Конкретний опитувальник
+
+//MIDDLEWARE
+//Route::group()
+    Route::post('test', 'Api\TestController@createTest'); //Створення опитувалиника
+    //put
+    //delete
+    Route::get('tests', 'Api\TestController@getAllTests'); //Показ вже створених опитувальників
+    Route::get('ratio/sector', 'Api\TestController@getSector'); //Секторна діаграма
+    Route::get('ratio/bar', 'Api\TestController@getBar'); //Стовчикова діаграма
+
