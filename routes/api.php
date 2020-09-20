@@ -26,7 +26,7 @@ Route::get('test/{code}', 'Api\TestController@getTestByCode'); //Конкрет�
     Route::post('test', 'Api\TestController@createTest'); //Створення опитувалиника
     //put
     //delete
-    Route::get('tests', 'Api\TestController@getAllTests'); //Показ вже створених опитувальників з витаннями і відповідями
+    Route::get('tests', 'Api\TestController@getAllTests'); //Показ вже створених опитувальників з питаннями і відповідями
     Route::get('ratio/sector', 'Api\TestController@getSector'); //Секторна діаграма
     Route::get('ratio/bar', 'Api\TestController@getBar'); //Стовчикова діаграма
 
