@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f90a9c0cc3d7cd7b1d24d0ee2befd49e",
+    "content-hash": "b7103f0345b9882e217084479101099b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2038,6 +2038,48 @@
                 "uuid"
             ],
             "time": "2020-08-18T17:17:46+00:00"
+        },
+        {
+            "name": "robinvdvleuten/ulid",
+            "version": "v4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robinvdvleuten/php-ulid.git",
+                "reference": "7feb8b196ef458047ce1fedd53394f38e31bfe2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robinvdvleuten/php-ulid/zipball/7feb8b196ef458047ce1fedd53394f38e31bfe2f",
+                "reference": "7feb8b196ef458047ce1fedd53394f38e31bfe2f",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "phpbench/phpbench": "^0.17",
+                "phpunit/phpunit": "^8.5",
+                "symfony/phpunit-bridge": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ulid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Robin van der Vleuten",
+                    "email": "robin@webstronauts.co"
+                }
+            ],
+            "description": "Universally Unique Lexicographically Sortable Identifier (ULID) implementation for PHP.",
+            "homepage": "https://github.com/robinvdvleuten/php-ulid",
+            "time": "2020-06-25T17:42:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

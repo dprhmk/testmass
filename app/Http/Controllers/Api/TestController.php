@@ -6,21 +6,36 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Test;
+use Ulid\Ulid;
 
 class TestController extends Controller
 {
+    public function getTestByCode($code)
+    {
+        $test = Test::where('code', '=', $code)->first();
+
+        if (is_null($test)) {
+            return response()->json(['error' => true, 'message' => 'Not found'], 404);
+        }
+
+        return response()->json($test, 200);
+    }
+
     public function createTest(Request $request)
     {
+        $ulid = Ulid::generate();
+        $code = (string) $ulid;
+
         $rules = [
             'name' => 'required',
-            'code' => 'required',
             'body' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-        $test = Test::create($request->all());
+
+        $test = Test::create(['name' => $request->input('name'), 'code' => $code]);
         $questions_arr = [];
         foreach ($request->only('body') as $question) {
             $questions_arr['body'] = $question;
