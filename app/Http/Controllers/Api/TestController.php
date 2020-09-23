@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Test;
@@ -23,6 +23,12 @@ class TestController extends Controller
 
     public function createTest(Request $request)
     {
+        try {
+            $user = auth()->userOrFail();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
+        }
+
         $ulid = Ulid::generate();
         $code = (string) $ulid;
 
@@ -46,12 +52,24 @@ class TestController extends Controller
 
     public function getAllTests()
     {
+        try {
+            $user = auth()->userOrFail();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
+        }
+
         $tests = Test::with('questions.answers')->get(); //Показ вже створених опитувальників з питаннями і відповідями
         return response()->json($tests, 200);
     }
 
     public function getSector()
     {
+        try {
+            $user = auth()->userOrFail();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
+        }
+
         $tests_count = Test::all()->count(); //Кіл-ть всіх опитувальників
         $tests_answers_count = Test::whereHas('questions.answers', function ($q) {
             $q->where('id', '!=', null);
@@ -61,6 +79,12 @@ class TestController extends Controller
 
     public function getBar()
     {
+        try {
+            $user = auth()->userOrFail();
+        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
+            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
+        }
+
         $tests = Test::all();
         $tests_arr = [];
         foreach ($tests as $test) {
