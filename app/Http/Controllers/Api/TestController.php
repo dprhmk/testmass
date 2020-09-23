@@ -12,7 +12,7 @@ class TestController extends Controller
 {
     public function getTestByCode($code)
     {
-        $test = Test::where('code', '=', $code)->first();
+        $test = Test::with('questions')->where('code', '=', $code)->get();
 
         if (is_null($test)) {
             return response()->json(['error' => true, 'message' => 'Not found'], 404);
