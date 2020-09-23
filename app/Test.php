@@ -11,6 +11,13 @@ class Test extends Model
         return $this->hasMany(Question::class);
     }
 
+
+    //Зв'язок через модель Тестів з Відповідями через Питання
+    public function answers()
+    {
+        return $this->hasOneThrough(Answer::class, Question::class);
+    }
+
     //public $timestamps = false;
 
     protected $fillable = [
